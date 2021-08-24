@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add an item to the shop</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            $("#token").val(localStorage.token);
+            document.getElementById('newItemForm').action = 'https://analog-context-251208.uc.r.appspot.com/upload?Authorization=' + localStorage.token 
+        });
+    </script>
+</head>
+
+<body>
+
+<section class="my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h2>Add an item to the shop</h2>
+                <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
+                <form id="newItemForm" method="post" action="https://analog-context-251208.uc.r.appspot.com/upload" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="text" name="itemName" value="Item name">
+                        <br>
+                        <textarea rows="5" name="description" value="Item description"></textarea>
+                        <br>
+                        <input type="text" name="price" value="Item price">
+                        <br>
+                        <input type="text" name="quantity" value="Quantity">
+                        <br>
+                        <label>Upload a picture of the item</label>
+                        <input type="file" name="file" class="form-control-file">
+                        <input type="hidden" name="token" value="-" id="token">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload File</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
