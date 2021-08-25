@@ -15,4 +15,10 @@ public interface NetRepository extends JpaRepository<Net, Long> {
 
     @Query("select n.net FROM Net n where n.shop_id = ?1")
     Float getNet(Integer shop_id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO net (shop_id, net) VALUES (?1, 0.00)", nativeQuery = true)
+    int addTruckToNet(Integer shop_id);
+
 }

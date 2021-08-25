@@ -55,6 +55,10 @@ public class MainController {
   , @RequestParam Float price) {
     JSONObject entity = new JSONObject();
     if (itemRepository.addItem(shop_id, category, name, flavor, quantity, price) > 0) { 
+      Float total = netRepository.getNet(shop_id);
+      if (total == null) {
+        netRepository.addTruckToNet(shop_id);
+      }
       entity.put("response", "Item has been added");
       return new ResponseEntity<Object>(entity, HttpStatus.OK);
     } else {
@@ -102,7 +106,7 @@ public class MainController {
       entity.put("response", "Getting value failed.  The shop id you sent as a parameter might not exist.");
       return new ResponseEntity<Object>(entity, HttpStatus.BAD_REQUEST); 
     } else {
-      String message = "Shop with the ID " + shop_id.toString() + " has made $" + thisNet.toString() + " so far.";
+      String message = "Shop with the ID " + shop_id.toString() + " has made $" + String.format("%,.2f", thisNet) + " so far.";
       entity.put("response", message);
       return new ResponseEntity<Object>(entity, HttpStatus.OK);
     }
