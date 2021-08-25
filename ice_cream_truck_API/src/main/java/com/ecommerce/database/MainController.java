@@ -102,7 +102,7 @@ public class MainController {
       entity.put("response", "Getting value failed.  The shop id you sent as a parameter might not exist.");
       return new ResponseEntity<Object>(entity, HttpStatus.BAD_REQUEST); 
     } else {
-      String message = "Shop with the ID " + shop_id.toString() + " has made $" + thisNet + " so far.";
+      String message = "Shop with the ID " + shop_id.toString() + " has made $" + thisNet.toString() + " so far.";
       entity.put("response", message);
       return new ResponseEntity<Object>(entity, HttpStatus.OK);
     }

@@ -32,7 +32,7 @@ public class Net {
   }
 
   public Float getNet() {
-      return net;
+    return net;
   }
 
   public void setNet(Float net) {
