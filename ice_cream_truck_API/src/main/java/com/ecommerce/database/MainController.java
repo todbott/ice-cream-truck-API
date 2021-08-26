@@ -137,7 +137,7 @@ public class MainController {
         netRepository.updateNet(thisNet, shop_id);
         return new ResponseEntity<Object>(entity, HttpStatus.OK);
       } else {
-        String message = "SO SORRY! You tried to buy " + quantity.toString() + ", but there are " + existingQuantity.toString() + " in stock.";
+        String message = "SO SORRY! You tried to buy " + quantity.toString() + ", but there are only " + existingQuantity.toString() + " in stock.";
         entity.put("response", message);
         return new ResponseEntity<Object>(entity, HttpStatus.BAD_REQUEST);
       }
